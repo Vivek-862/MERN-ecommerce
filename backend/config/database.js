@@ -10,22 +10,24 @@
 //     }).catch((err)=>{
 //         console.log(err);
     
-//     })
+//     })`
 
 // }
 
 
 // module.exports = connectDatabase
 
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const connectDatabase = async () => {
   try {
+    console.log("Here")
     const { connection } = await mongoose.connect(process.env.DB_URI);
+    console.log("FUCK")
     console.log(connection.host);
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export default connectDatabase;
+module.exports = connectDatabase
