@@ -1,13 +1,15 @@
+const app = require("./app.js")
 
-const cors = require('cors');
+
+
 
 const dotenv = require("dotenv");
 // import connectDatabase from "./config/database";
-const connctDatabase = require("./config/database")
+const connectDatabase = require("./config/database")
 const express = require("express");
-const app = express();
+// const app = express();
 
- app.use(cors());
+//  app.use(cors());
 
 // config
 
@@ -26,8 +28,8 @@ app.use("/",product);
 
 
 //connecting to database
-connctDatabase();
+connectDatabase();
 
 app.listen(process.env.PORT,()=>{
-    console.log(`serever is running on http://localhost:${process.env.PORT}`);
+    console.log(`server is running on http://localhost:${process.env.PORT}`);
 })
