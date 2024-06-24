@@ -23,7 +23,7 @@ const connectDatabase = async () => {
   try {
     console.log("Here")
     const { connection } = await mongoose.connect(process.env.DB_URI);
-    console.log("FUCK")
+    console.log("successfully")
     console.log(connection.host);
   } catch (error) {
     console.log(error.message);
