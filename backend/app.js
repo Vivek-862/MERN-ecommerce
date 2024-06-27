@@ -1,11 +1,13 @@
 const express =require("express");
 const errorMiddleware = require("./middleware/error");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
 const app = express();
 app.use(express.json())
+app.use(cookieParser());
 
 
 //route imports
