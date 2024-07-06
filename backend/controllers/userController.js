@@ -223,3 +223,72 @@ exports.updateProfile = catchAsyncErrors(async(req,res,next)=>{
 })
 
 
+//Get all users
+exports.getAllUser = catchAsyncErrors(async(req,res,next)=>{
+    const users = await User.find();
+
+    res.status(200).json({
+        success:true,
+        users,
+    })
+})
+
+
+//Get single users (Admin)
+exports.getSingleUser = catchAsyncErrors(async(req,res,next)=>{
+    const user = await User.findById(req.params.id);
+
+    if(!user){
+        return next(new ErrorHander(`User doesnot exit with ID: ${req.params.id}`))
+    }
+
+    res.status(200).json({
+        success:true,
+        users,
+    })
+})
+
+
+//Update User Role --Admin
+exports.updateProfile = catchAsyncErrors(async(req,res,next)=>{
+    const newUserData ={
+        name:req.body.name,
+        email:req.body.email,
+        role: req.body.role,
+    }
+
+
+    const user = await User.findByIdAndUpdate(req.params.id,newUserData,{
+        new:true,
+        runValidators:true,
+        useFindAndModify:false,
+
+    })
+    res.status(200).json({
+        success:true,
+
+    })
+
+})
+
+
+//Delete User --Admin
+exports.deleteUser = catchAsyncErrors(async(req,res,next)=>{
+    const user = await User.findById(req.params.id);
+
+    //we will remove cloudinary 
+    if(!user){
+       return next(new ErrorHander(`User does not exits with Id:${req.params.id}`));
+    }
+
+    await user.remove();
+
+    
+    res.status(200).json({
+        success:true,
+
+    })
+
+})
+
+
