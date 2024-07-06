@@ -16,5 +16,7 @@ router
     .delete(isAuthenticatedUser, deleteProduct)
     .get(getProductDetails);
 
+    router.route("/product/:id").get(getProductDetails);
+
 module.exports = router;
 
