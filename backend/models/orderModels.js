@@ -1,4 +1,4 @@
-const mongoose = require("m;ongoose");
+const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
     shippingInfo: {
